@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RISE - בוקר העצמה וצילום לנשים</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700;900&family=Anton&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Rubik', sans-serif;
+    background: #0a0a0a;
+    color: #f2f2f2;
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  .ticker {
+    background: #000;
+    border-top: 1px solid #fff;
+    border-bottom: 1px solid #fff;
+    overflow: hidden;
+    white-space: nowrap;
+    padding: 9px 0;
+  }
+  .ticker span {
+    display: inline-block;
+    font-weight: 700;
+    letter-spacing: 3px;
+    font-size: 13px;
+    color: #eee;
+  }
+  .ticker span.star { color: #e65a8c; margin: 0 14px; }
+  .hero {
+    flex: 1;
+    text-align: center;
+    padding: 60px 24px;
+    max-width: 560px;
+    margin: 0 auto;
+    background: radial-gradient(ellipse at top, #1a1a1a 0%, #050505 70%);
+  }
+  .wordmark-wrap {
+    overflow: visible;
+    padding: 10px 0 20px;
+  }
+  .wordmark {
+    font-family: 'Anton', 'Rubik', sans-serif;
+    font-weight: 400;
+    font-size: clamp(100px, 26vw, 210px);
+    letter-spacing: -2px;
+    color: #fff;
+    line-height: 0.85;
+  }
+  .credit {
+    margin-top: 14px;
+    font-size: 14px;
+    letter-spacing: 1px;
+    color: #999;
+  }
+  .credit .pink { color: #e65a8c; margin: 0 6px; }
+  .star-divider { color: #e65a8c; font-size: 22px; margin: 22px 0; }
+  .hero h2 { font-size: clamp(19px, 4vw, 24px); font-weight: 700; margin-bottom: 16px; }
+  .hero p { font-size: 16px; color: #bbb; margin: 0 auto 28px; }
+  .meta-badges { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-bottom: 34px; }
+  .badge {
+    border: 1px solid #3a3a3a; border-radius: 30px; padding: 7px 18px;
+    font-size: 13px; color: #ccc;
+  }
+  .lead-form {
+    display: flex; flex-direction: column; gap: 12px;
+    max-width: 340px; margin: 0 auto;
+  }
+  .lead-form input {
+    background: #161616; border: 1px solid #333; border-radius: 10px;
+    padding: 14px 16px; font-size: 15px; color: #fff; font-family: 'Rubik', sans-serif;
+    text-align: right;
+  }
+  .lead-form input::placeholder { color: #777; }
+  .lead-form input:focus { outline: none; border-color: #e65a8c; }
+  .submit-btn {
+    background: #e65a8c; color: #1a0510; font-weight: 700; border: none;
+    padding: 15px; border-radius: 10px; font-size: 16px; cursor: pointer;
+    font-family: 'Rubik', sans-serif; transition: transform .15s ease;
+  }
+  .submit-btn:hover { transform: scale(1.02); }
+  .form-note { font-size: 13px; color: #777; margin-top: 12px; }
+  footer { text-align: center; padding: 24px; color: #555; font-size: 12px; }
+</style>
+</head>
+<body>
+
+<div class="ticker" id="ticker-top"></div>
+
+<div class="hero">
+  <div class="wordmark-wrap"><div class="wordmark">RISE</div></div>
+  <div class="credit">אידית קליימן <span class="pink">×</span> דנה תהל</div>
+  <div class="star-divider">✦</div>
+  <h2>בוקר העצמה וצילום לנשים</h2>
+  <p>בוקר קטן ונעים - סדנת העצמה, יין ומינגלינג, וסשן צילומים עם 2 אאוטפיטים. תמונות שאת בוחרת, בעצמך.</p>
+  <div class="meta-badges">
+    <span class="badge">10.8 · 10:00</span>
+    <span class="badge">הוד השרון</span>
+  </div>
+
+  <form class="lead-form" id="lead-form">
+    <input type="text" id="name" placeholder="שם מלא" required>
+    <input type="tel" id="phone" placeholder="טלפון" required>
+    <button type="submit" class="submit-btn">אני רוצה לדעת עוד ✦</button>
+  </form>
+  <p class="form-note">משאירות פרטים - ואנחנו חוזרות אליכן עם כל הפרטים.</p>
+</div>
+
+<div class="ticker" id="ticker-bottom"></div>
+
+<footer>
+  RISE ✦ בשיתוף דנה תהל (@dana_tahel_photographer)
+</footer>
+
+<script>
+  function fillTicker(id) {
+    const el = document.getElementById(id);
+    let html = "";
+    for (let i = 0; i < 20; i++) {
+      html += "<span>RISE</span><span class='star'>✦</span>";
+    }
+    el.innerHTML = html;
+  }
+  fillTicker('ticker-top');
+  fillTicker('ticker-bottom');
+
+  document.getElementById('lead-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const name = document.getElementById('name').value.trim();
+    const phone = document.getElementById('phone').value.trim();
+    const msg = "היי, אני " + name + " (טלפון: " + phone + "), אשמח לקבל פרטים נוספים על סדנת RISE";
+    const url = "https://wa.me/972549700108?text=" + encodeURIComponent(msg);
+    window.open(url, "_blank");
+  });
+</script>
+
+</body>
+</html>
